@@ -1,7 +1,7 @@
 class PrototypesController < ApplicationController
   before_action :set_prototype, only: [:edit, :show]
   #ログインしていないユーザーをログインページの画面に促すことができます。
-  before_action :authenticate_user!, only: [:new, :show, :edit]
+  before_action :authenticate_user!, only: [:new, :edit]
   
   def index
     @prototypes = Prototype.all
@@ -34,7 +34,7 @@ class PrototypesController < ApplicationController
   def update
     @prototype = Prototype.find(params[:id])
     if @prototype.update(prototype_params)
-       redirect_to root_path
+       redirect_to prototype_path
        
     else
       render :edit
